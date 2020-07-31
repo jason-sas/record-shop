@@ -1,0 +1,11 @@
+{
+  "name": "euterpe",
+  "version": "1.0.0",
+  "description": "Music library manager",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "author": "Jason Guarracino",
+  "license": "GPL-3.0-or-later"
+}
