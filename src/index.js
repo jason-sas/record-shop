@@ -1,12 +1,11 @@
 import {
-  procesDir,
+  processDir,
   isWindowsDuplicateMP3,
   dumpToConsole,
   deleteFile,
 } from "./dedupe";
 import yargs from "yargs";
 
-console.log("Processing directory...");
 const argv = yargs
   .command("dedupe <target>", true)
   .option("d", {
@@ -24,7 +23,10 @@ const argv = yargs
     default: false,
   })
   .help()
-  .argv();
+  .argv;
+
+console.log(argv);
+console.info(`Using target directory ${argv._[0]}`);
 
 let processingFn = () => processDir(isWindowsDuplicateMP3);
 
@@ -37,7 +39,7 @@ if (argv.dedupe && argv.dryrun) {
   processingFn = processingFn(deleteFile);
 }
 
-const target = argv.target;
+const target = argv._[0];
 
 const results = processingFn(recurse, target);
 

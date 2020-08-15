@@ -1,9 +1,9 @@
-import "regenerator-runtime/runtime.js";
+import {describe, it, beforeEach} from "@jest/globals";
 import wish from "wish";
-import { map, slice, forEach, find } from "ramda";
+import { forEach, find } from "ramda";
 import { deleteFile, isWindowsDuplicateMP3, processDir } from "./dedupe";
 import fs from "fs";
-import { async } from "regenerator-runtime";
+
 
 const { existsSync, mkdirSync, writeFileSync, rmdirSync } = fs;
 
@@ -68,7 +68,7 @@ describe("Dedupe unit tests", () => {
       isWindowsDuplicateMP3,
       deleteFile,
       true,
-      "test/test_2"
+      "/mnt/c/"
     );
     wish(!existsSync("test/test_2/a (1).mp3"));
     wish(!existsSync("test/test_2/a (2).mp3"));

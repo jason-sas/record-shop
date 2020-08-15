@@ -16,7 +16,6 @@ function deleteFile(filePath) {
 }
 
 function processDir(matchFn, actionFn, shouldRecurse, target) {
-  if (!existsSync(target)) throw new Error("Target directory does not exist.");
   const dirEnts = readdirSync(target, { withFileTypes: true });
   const files = filter(
     (file) => file.isFile() && matchFn(`${target}/${file.name}`),
