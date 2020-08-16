@@ -11,6 +11,7 @@
     "test": "npx jest",
     "build": "npx rollup -c",
     "start": "node dist/index.js",
+    "pretty": "prettier --write src/*.js",
     "debug:tests": "node --inspect-brk node_modules/.bin/jest --runInBand"
   },
   "author": "Jason Guarracino",

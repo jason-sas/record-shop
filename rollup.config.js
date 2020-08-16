@@ -1,8 +1,8 @@
 export default {
-  input: "src/index.js",
+  input: 'src/index.js',
   output: {
-    file: "dist/index.js",
-    format: "cjs"
+    file: 'dist/index.js',
+    format: 'cjs',
   },
-  external: [ "yargs", "fs", "sanctuary" ],
+  external: ['yargs', 'fs', 'sanctuary'],
 };

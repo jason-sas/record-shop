@@ -3,27 +3,26 @@ import {
   isWindowsDuplicateMP3,
   dumpToConsole,
   deleteFile,
-} from "./dedupe";
-import yargs from "yargs";
+} from './dedupe';
+import yargs from 'yargs';
 
 const argv = yargs
-  .command("dedupe <target>", true)
-  .option("d", {
-    alias: "dryrun",
+  .command('dedupe <target>', true)
+  .option('d', {
+    alias: 'dryrun',
     demandOption: false,
-    describe: "Outputs files to be deleted in console.  No files are deleted.",
-    type: "boolean",
+    describe: 'Outputs files to be deleted in console.  No files are deleted.',
+    type: 'boolean',
     default: false,
   })
-  .option("r", {
-    alias: "recurse",
+  .option('r', {
+    alias: 'recurse',
     demandOption: false,
-    describe: "Recurse through subdirectories and process files.",
-    type: "boolean",
+    describe: 'Recurse through subdirectories and process files.',
+    type: 'boolean',
     default: false,
   })
-  .help()
-  .argv;
+  .help().argv;
 
 console.log(argv);
 console.info(`Using target directory ${argv._[0]}`);
