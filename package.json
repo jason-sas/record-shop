@@ -1,8 +1,12 @@
 {
-  "name": "euterpe",
+  "name": "record_shop",
   "version": "1.0.0",
-  "description": "Music library manager",
+  "description": "Music library manager for DJ's",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jason-sas/record-shop.git"
+  },
   "scripts": {
     "test": "npx jest",
     "build": "npx rollup -c",
@@ -12,8 +16,9 @@
   "author": "Jason Guarracino",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "chalk": "^4.1.0",
     "ramda": "^0.27.1",
-    "rollup": "^2.23.0"
+    "sanctuary": "^3.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
@@ -23,20 +28,43 @@
     "babel-jest": "^26.3.0",
     "commitizen": "^4.1.2",
     "cz-conventional-changelog": "^3.2.0",
-    "eslint": "^7.6.0",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-node": "^4.1.0",
     "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-jsx-a11y": "^6.3.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "husky": "^4.2.5",
     "jest": "^26.2.2",
+    "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
     "regenerator-runtime": "^0.13.7",
+    "rollup": "^2.23.0",
     "wish": "^1.0.1"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./src/*.{js,jsx,ts,tsx}": [
+      "npx prettier --write",
+      "eslint src/*.js --fix-dry-run"
+    ]
   }
 }

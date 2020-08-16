@@ -31,18 +31,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ebc3a2a1-5f4e-4c97-aa71-cd90dacac18c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/record-shop.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/rename.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/rename.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.pretterierrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/rollup.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dedupe.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/dedupe.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dedupe.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/dedupe.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rename.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/rename.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rename.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/rename.spec.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +118,8 @@
       <updated>1597504779244</updated>
       <workItem from="1597504781201" duration="1710000" />
       <workItem from="1597508383181" duration="606000" />
-      <workItem from="1597509967036" duration="5371000" />
+      <workItem from="1597509967036" duration="6212000" />
+      <workItem from="1597572303342" duration="5424000" />
     </task>
     <servers />
   </component>
@@ -145,22 +143,22 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="736" y="376" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1597504948025" />
-    <state width="2539" height="413" key="GridCell.Tab.0.bottom" timestamp="1597505476924">
+    <state width="2539" height="413" key="GridCell.Tab.0.bottom" timestamp="1597579483174">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2539" height="413" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1597505476924" />
-    <state width="2539" height="413" key="GridCell.Tab.0.center" timestamp="1597505476924">
+    <state width="2539" height="413" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1597579483174" />
+    <state width="2539" height="413" key="GridCell.Tab.0.center" timestamp="1597579483174">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2539" height="413" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1597505476924" />
-    <state width="2539" height="413" key="GridCell.Tab.0.left" timestamp="1597505476924">
+    <state width="2539" height="413" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1597579483174" />
+    <state width="2539" height="413" key="GridCell.Tab.0.left" timestamp="1597579483174">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2539" height="413" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1597505476924" />
-    <state width="2539" height="413" key="GridCell.Tab.0.right" timestamp="1597505476924">
+    <state width="2539" height="413" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1597579483174" />
+    <state width="2539" height="413" key="GridCell.Tab.0.right" timestamp="1597579483174">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2539" height="413" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1597505476924" />
+    <state width="2539" height="413" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1597579483174" />
     <state width="2539" height="508" key="GridCell.Tab.1.bottom" timestamp="1597505324403">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
@@ -215,7 +213,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/dedupe.js</url>
-          <line>18</line>
+          <line>23</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

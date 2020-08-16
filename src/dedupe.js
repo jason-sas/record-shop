@@ -1,41 +1,43 @@
-import fs from "fs";
-import { existsSync, unlinkSync, readdirSync } from "fs";
-import { curry, filter, map, concat } from "ramda";
+import {existsSync, unlinkSync, readdirSync} from "fs";
+import S from "sanctuary";
+
+const {concat, filter, map, empty} = S;
 
 function isWindowsDuplicateMP3(filePath) {
-  return /\([0-9]*\).mp3$/.test(filePath);
+    return /\([0-9]*\).mp3$/.test(filePath);
 }
 
 function dumpToConsole(filePath) {
-  return filePath;
+    return filePath;
 }
 
 function deleteFile(filePath) {
-  unlinkSync(filePath);
-  return filePath;
+    unlinkSync(filePath);
+    return filePath;
 }
 
-function processDir(matchFn, actionFn, shouldRecurse, target) {
-  const dirEnts = readdirSync(target, { withFileTypes: true });
-  const files = filter(
-    (file) => file.isFile() && matchFn(`${target}/${file.name}`),
-    dirEnts
-  );
-  const paths = map((file) => `${target}/${file.name}`, files);
+function processDir(matchFn = () => true, actionFn = input => input, shouldRecurse = false, target = empty(String)) {
 
-  let filesOutput = map(actionFn, paths);
+    if (target === empty(String) || !existsSync(target))
+        throw new Error("Target directory was either not provided or does not exist");
 
-  if (shouldRecurse) {
-    const dirs = filter((dir) => dir.isDirectory(), dirEnts);
-    const subdirFilesOutput = map(
-      async (dir) =>
-        processDir(matchFn, actionFn, shouldRecurse, `${target}/${dir.name}`),
-      dirs
-    );
-    filesOutput = concat(filesOutput, subdirFilesOutput);
-  }
+    const dirEntries = readdirSync(target, {withFileTypes: true});
+    const files = filter(file => file.isFile() && matchFn(`${target}/${file.name}`), dirEntries);
+    const paths = map((file) => `${target}/${file.name}`, files);
 
-  return filesOutput;
+    let filesOutput = map(actionFn, paths);
+
+    if (shouldRecurse) {
+        const dirs = filter((dir) => dir.isDirectory(), dirEntries);
+        const subDirectoryOutput = map(
+            async (dir) =>
+                processDir(matchFn, actionFn, shouldRecurse, `${target}/${dir.name}`),
+            dirs
+        );
+        filesOutput = concat(filesOutput, subDirectoryOutput);
+    }
+
+    return filesOutput;
 }
 
-export { processDir, isWindowsDuplicateMP3, dumpToConsole, deleteFile };
+export {processDir, isWindowsDuplicateMP3, dumpToConsole, deleteFile};
