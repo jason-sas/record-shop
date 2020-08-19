@@ -22,7 +22,7 @@ export function logRuleExecution(rule, filePath) {
 export function processRule(rule, filePath) {
   if (rule.matchFn(filePath)) {
     const retVal = rule.actionFn(filePath);
-    if (!retVal.isNothing) renameSync(filePath, retVal.value);
+    if (!retVal.isNothing) renameSync(resolve(filePath), resolve(retVal.value));
     if (!retVal.isNothing) logRuleExecution(rule, filePath);
     return retVal;
   }

@@ -9,7 +9,7 @@ const {
   existsSync, mkdirSync, writeFileSync, rmdirSync,
 } = fs;
 
-const directories = ['test', 'test/test_1', 'test/test_2', 'test/test_3'];
+const directories = ['test', 'test/test_4', 'test/test_5', 'test/test_6'];
 
 const files = [
   'control.mp4',
@@ -28,7 +28,7 @@ describe('Rename tests', () => {
   });
 
   it('should process rule 1 - Underscores and prefix', (done) => {
-    const result = processRule(removeUnderscoresRule, 'test/test_1/lorem_ipsum_foo.mp4');
+    const result = processRule(removeUnderscoresRule, 'test/test_4/lorem_ipsum_foo.mp4');
     wish(result === 'test/test_1/lorem_ipsum_foo.mp4');
     done();
   });
