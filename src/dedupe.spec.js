@@ -27,21 +27,29 @@ describe('Dedupe unit tests', () => {
   const files = ['a.mp3',
     'a (1).mp3', 'a (2).mp3', 'b.mp3'];
 
-  beforeEach((done) => {
-    if (existsSync('./test/dedupe_tests')) rmdirSync('./test/dedupe_tests', { recursive: true });
+  beforeEach(() => {
+    if (existsSync('test/dedupe_tests')) rmdirSync('test/dedupe_tests', { recursive: true });
 
     const makeFiles = function _makeFiles(path) {
       files.forEach((file) => {
-        writeFileSync(`${path}/${file}`, 'This is a test.');
+        try {
+          writeFileSync(`${path}/${file}`, 'This is a test.');
+        } catch (e) {
+          console.error(e.message);
+          throw e;
+        }
       });
     };
 
     directories.forEach((directory) => {
-      mkdirSync(directory, { recursive: true });
+      try {
+        mkdirSync(directory, { recursive: true });
+      } catch (e) {
+        console.error(e.message);
+        throw e;
+      }
       makeFiles(directory);
     });
-
-    done();
   });
 
   it('should be a Windows duplicate', (done) => {

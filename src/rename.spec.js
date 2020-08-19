@@ -20,8 +20,20 @@ const files = [
 beforeEach((done) => {
   if (existsSync('test/rename_tests')) rmdirSync('test/rename_tests', { recursive: true });
   directories.forEach((directory) => {
-    mkdirSync(resolve(directory), { recursive: true });
-    files.forEach((file) => writeFileSync(resolve(`${directory}/${file}`), 'This is a test file'));
+    try {
+      mkdirSync(resolve(directory), { recursive: true });
+    } catch (e) {
+      console.error(e.message);
+      throw e;
+    }
+    files.forEach((file) => {
+      try {
+        writeFileSync(resolve(`${directory}/${file}`), 'This is a test file');
+      } catch (e) {
+        console.error(e.message);
+        throw e;
+      }
+    });
   });
   done();
 });
