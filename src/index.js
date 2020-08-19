@@ -1,12 +1,31 @@
+import yargs from 'yargs';
 import {
   processDir,
   isWindowsDuplicateMP3,
   dumpToConsole,
   deleteFile,
 } from './dedupe';
-import yargs from 'yargs';
 
-const argv = yargs
+const videoConfig = {
+  rules: [
+    {
+      id: 1,
+      name: 'Prefix, Underscores and Plus Sign',
+      matchFn: (filePath) => /^[0-9]+_[0-9]+_[0-9]+_*.mp4$/.test(filePath),
+      actionFn: (filePath) => logRuleExecution(this, filePath),
+    },
+    {
+      id: 2,
+      name: 'Underscores only',
+      matchFn: (filePath) => path.basename(filePath).split('_').length > 1,
+      actionFn: (filePath) => logRuleExecution(this, filePath),
+    },
+  ],
+  shouldRecurse: true,
+  dryRun: false,
+};
+
+const { argv } = yargs
   .command('dedupe <target>', true)
   .option('d', {
     alias: 'dryrun',
@@ -22,14 +41,14 @@ const argv = yargs
     type: 'boolean',
     default: false,
   })
-  .help().argv;
+  .help();
 
 console.log(argv);
 console.info(`Using target directory ${argv._[0]}`);
 
 let processingFn = () => processDir(isWindowsDuplicateMP3);
 
-const recurse = argv.recurse;
+const { recurse } = argv;
 
 // A dry run
 if (argv.dedupe && argv.dryrun) {

@@ -1,55 +1,47 @@
 import chalk from 'chalk';
-import { readdirSync } from 'fs';
+import { readdirSync, renameSync } from 'fs';
 import S from 'sanctuary';
+import { resolve } from 'path';
 
-const { concat, filter, map } = S;
+const {
+  concat,
+  filter,
+  map,
+  Just,
+  Nothing,
+} = S;
 
-const None = Object.freeze({});
-
-function logRuleExecution(rule, filePath) {
-  console.log(chalk.whiteBright.bgBlue(rule.name) + `: ${filePath}`);
-  return filePath;
+export function logRuleExecution(rule, filePath) {
+  // eslint-disable-next-line no-console
+  console.log(
+    `${chalk.whiteBright.bgBlue(rule.name)}: ${chalk.green(filePath)}`,
+  );
+  return Just(filePath);
 }
 
-const pornConfig = {
-  rules: [
-    {
-      id: 1,
-      name: 'Prefix, Underscores and Plus Sign',
-      matchFn: (filePath) => /^[0-9]+_[0-9]+_[0-9]+_*.mp4$/.test(path),
-      actionFn: (filePath) => logRuleExecution(this, filePath),
-    },
-    {
-      id: 2,
-      name: 'Underscores only',
-      matchFn: (filePath) => path.basename(filePath).split('_').length > 1,
-      actionFn: (filePath) => logRuleExecution(this, filePath),
-    },
-  ],
-  shouldRecurse: true,
-  dryRun: false,
-};
-
-function processRule(rule, filePath) {
+export function processRule(rule, filePath) {
   if (rule.matchFn(filePath)) {
-    const retVal = rule.actionFn(filePath);
-    logRuleExecution(rule, filePath);
-  } else {
-    return None;
+    const retVal = Just(rule.actionFn(filePath));
+    if (!retVal.isNothing) renameSync(filePath, retVal.value);
+    if (!retVal.isNothing) logRuleExecution(rule, filePath);
+    return retVal;
   }
+  return Nothing;
 }
 
-function processDir(config, target) {
-  const dirEntries = readdirSync(target, { withFileTypes: true });
+export function processDir(config, target) {
+  const absolutePath = resolve(target);
+  const dirEntries = readdirSync(absolutePath, { withFileTypes: true });
   const files = filter((file) => file.isFile(), dirEntries);
-  const filePaths = map((file) => `${target}/${file.name}`, files);
+  const filePaths = map((file) => `${absolutePath}/${file.name}`, files);
   let filesOutput = [];
-  for (const filePath in filePaths) {
-    for (const rule in config.rules) {
+
+  filePaths.forEach((filePath) => {
+    config.rules.forEach((rule) => {
       const ruleResult = processRule(rule, filePath);
-      if (ruleResult !== None) filesOutput.push(ruleResult);
-    }
-  }
+      if (!ruleResult === Nothing) filesOutput.push(ruleResult);
+    });
+  });
 
   if (config.shouldRecurse) {
     const dirs = filter((dir) => dir.isDirectory(), dirEntries);
@@ -60,7 +52,19 @@ function processDir(config, target) {
     filesOutput = concat(filesOutput, subDirFilesOutput);
   }
 
-  return filesOutput;
+  return Just(filesOutput);
 }
 
-export { processDir };
+export function matchUnderscores(filePath) {
+  return Just(filePath.split('_').length > 1);
+}
+
+export function removeUnderScores(filePath) {
+  return Just(filePath.split('_').join(' '));
+}
+
+export const removeUnderscoresRule = {
+  name: 'Remove Underscores Rule',
+  matchFn: matchUnderscores,
+  actionFn: removeUnderScores,
+};

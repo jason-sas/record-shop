@@ -1,5 +1,9 @@
 import { describe, it, beforeEach } from '@jest/globals';
+import { resolve } from 'path';
 import fs from 'fs';
+import * as wish from 'wish';
+// eslint-disable-next-line import/named
+import { processRule, removeUnderscoresRule } from './rename';
 
 const {
   existsSync, mkdirSync, writeFileSync, rmdirSync,
@@ -17,13 +21,15 @@ describe('Rename tests', () => {
   beforeEach((done) => {
     if (existsSync('test')) rmdirSync('test', { recursive: true });
     directories.forEach((directory) => {
-      mkdirSync(directory, { recursive: true });
-      files.forEach((file) => writeFileSync(file, 'This is a test file'));
+      mkdirSync(resolve(directory), { recursive: true });
+      files.forEach((file) => writeFileSync(resolve(`${directory}/${file}`), 'This is a test file'));
     });
     done();
   });
 
   it('should process rule 1 - Underscores and prefix', (done) => {
+    const result = processRule(removeUnderscoresRule, 'test/test_1/lorem_ipsum_foo.mp4');
+    wish(result === 'test/test_1/lorem_ipsum_foo.mp4');
     done();
   });
 

@@ -1,7 +1,9 @@
 import { existsSync, unlinkSync, readdirSync } from 'fs';
 import S from 'sanctuary';
 
-const { concat, filter, map, empty } = S;
+const {
+  concat, filter, map, empty,
+} = S;
 
 function isWindowsDuplicateMP3(filePath) {
   return /\([0-9]*\).mp3$/.test(filePath);
@@ -22,10 +24,11 @@ function processDir(
   shouldRecurse = false,
   target = empty(String),
 ) {
-  if (target === empty(String) || !existsSync(target))
+  if (target === empty(String) || !existsSync(target)) {
     throw new Error(
       'Target directory was either not provided or does not exist',
     );
+  }
 
   const dirEntries = readdirSync(target, { withFileTypes: true });
   const files = filter(
@@ -39,9 +42,7 @@ function processDir(
   if (shouldRecurse) {
     const dirs = filter((dir) => dir.isDirectory(), dirEntries);
     const subDirectoryOutput = map(
-      async (dir) =>
-        processDir(matchFn, actionFn, shouldRecurse, `${target}/${dir.name}`),
-      dirs,
+      async (dir) => processDir(matchFn, actionFn, shouldRecurse, `${target}/${dir.name}`), dirs,
     );
     filesOutput = concat(filesOutput, subDirectoryOutput);
   }
@@ -49,4 +50,6 @@ function processDir(
   return filesOutput;
 }
 
-export { processDir, isWindowsDuplicateMP3, dumpToConsole, deleteFile };
+export {
+  processDir, isWindowsDuplicateMP3, dumpToConsole, deleteFile,
+};
