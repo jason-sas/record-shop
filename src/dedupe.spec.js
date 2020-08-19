@@ -14,7 +14,7 @@ const {
 describe('Dedupe unit tests', () => {
   const directories = [
     'test',
-    'test',
+    'test/dedupe_tests',
     'test/dedupe_tests/test_1',
     'test/dedupe_tests/test_2',
     'test/dedupe_tests/test_3',

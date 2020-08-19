@@ -9,7 +9,7 @@ const {
   existsSync, mkdirSync, writeFileSync, rmdirSync,
 } = fs;
 
-const directories = ['test', 'rename_tests', 'test/rename_tests/test_1', 'test/rename_tests/test_2', 'test/rename_tests/test_3'];
+const directories = ['test', 'test/rename_tests', 'test/rename_tests/test_1', 'test/rename_tests/test_2', 'test/rename_tests/test_3'];
 
 const files = [
   'control.mp4',
@@ -17,16 +17,16 @@ const files = [
   'lorem_ipsum_foo.mp4',
 ];
 
-describe('Rename tests', () => {
-  beforeEach((done) => {
-    if (existsSync('test/rename_tests')) rmdirSync('test/rename_tests', { recursive: true });
-    directories.forEach((directory) => {
-      mkdirSync(resolve(directory), { recursive: true });
-      files.forEach((file) => writeFileSync(resolve(`${directory}/${file}`), 'This is a test file'));
-    });
-    done();
+beforeEach((done) => {
+  if (existsSync('test/rename_tests')) rmdirSync('test/rename_tests', { recursive: true });
+  directories.forEach((directory) => {
+    mkdirSync(resolve(directory), { recursive: true });
+    files.forEach((file) => writeFileSync(resolve(`${directory}/${file}`), 'This is a test file'));
   });
+  done();
+});
 
+describe('Rename tests', () => {
   it('should process rule 1 - Underscores and prefix', (done) => {
     const result = processRule(removeUnderscoresRule, 'test/rename_tests/test_1/lorem_ipsum_foo.mp4');
     wish(result === 'test/rename_tests/test_1/lorem_ipsum_foo.mp4');
