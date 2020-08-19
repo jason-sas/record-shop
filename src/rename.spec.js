@@ -17,11 +17,12 @@ const files = [
   'lorem_ipsum_foo.mp4',
 ];
 
-beforeEach((done) => {
+beforeEach(() => {
   if (existsSync('test/rename_tests')) rmdirSync('test/rename_tests', { recursive: true });
   directories.forEach((directory) => {
     try {
       mkdirSync(resolve(directory), { recursive: true });
+      console.info(`Created directory ${directory}`);
     } catch (e) {
       console.error(e.message);
       throw e;
@@ -29,13 +30,13 @@ beforeEach((done) => {
     files.forEach((file) => {
       try {
         writeFileSync(resolve(`${directory}/${file}`), 'This is a test file');
+        console.info(`Created file ${directory}/${file}`);
       } catch (e) {
         console.error(e.message);
         throw e;
       }
     });
   });
-  done();
 });
 
 describe('Rename tests', () => {
