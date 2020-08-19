@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -31,17 +34,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ebc3a2a1-5f4e-4c97-aa71-cd90dacac18c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/record-shop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/record-shop.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/rollup.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dedupe.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/dedupe.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rename.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/rename.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rename.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/rename.spec.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,9 +131,9 @@
     </configuration>
     <list>
       <item itemvalue="Jest.All Tests" />
-      <item itemvalue="npm.build" />
       <item itemvalue="Jest.Rename tests.should process rule 1 - Underscores and prefix" />
       <item itemvalue="Jest.Rename tests" />
+      <item itemvalue="npm.build" />
     </list>
     <recent_temporary>
       <list>
@@ -163,6 +157,7 @@
       <workItem from="1597572303342" duration="10881000" />
       <workItem from="1597774754411" duration="31000" />
       <workItem from="1597774800284" duration="6121000" />
+      <workItem from="1597847216273" duration="884000" />
     </task>
     <servers />
   </component>
@@ -262,9 +257,9 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="987" y="276" width="587" height="888" key="find.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1597580677862" />
-    <state x="943" y="325" width="672" height="678" key="search.everywhere.popup" timestamp="1597775639782">
+    <state x="943" y="325" width="672" height="678" key="search.everywhere.popup" timestamp="1597847355830">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state x="943" y="325" width="672" height="678" key="search.everywhere.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1597775639782" />
+    <state x="943" y="325" width="672" height="678" key="search.everywhere.popup/0.0.2560.1440@0.0.2560.1440" timestamp="1597847355830" />
   </component>
 </project>
