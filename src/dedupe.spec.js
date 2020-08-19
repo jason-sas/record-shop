@@ -5,7 +5,7 @@ import fs from 'fs';
 import S from 'sanctuary';
 import { deleteFile, isWindowsDuplicateMP3, processDir } from './dedupe';
 
-const { forEach, contains } = S;
+const { contains } = S;
 
 const {
   existsSync, mkdirSync, writeFileSync, rmdirSync,
@@ -31,15 +31,15 @@ describe('Dedupe unit tests', () => {
     if (existsSync('./test/dedupe_tests')) rmdirSync('./test/dedupe_tests', { recursive: true });
 
     const makeFiles = function _makeFiles(path) {
-      forEach((file) => {
+      files.forEach((file) => {
         writeFileSync(`${path}/${file}`, 'This is a test.');
-      }, files);
+      });
     };
 
-    forEach((directory) => {
+    directories.forEach((directory) => {
       mkdirSync(directory, { recursive: true });
       makeFiles(directory);
-    }, directories);
+    });
 
     done();
   });
@@ -66,7 +66,7 @@ describe('Dedupe unit tests', () => {
     wish(!existsSync('test/dedupe_tests/test_1/a (2).mp3'));
     wish(existsSync('test/dedupe_tests/test_1/a.mp3'));
     wish(existsSync('test/dedupe_tests/test_1/b.mp3'));
-    wish(contains('test/dedupe_tests/test_1/a (1).mp3', processedFiles));
+    wish(processedFiles.contains('test/dedupe_tests/test_1/a (1).mp3'));
     done();
   });
 
